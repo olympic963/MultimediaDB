@@ -1,0 +1,158 @@
+2025-04-19 16:05:31,621 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 16:05:45,089 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 16:05:45,757 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 16:05:45,856 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-04-19 16:05:45,896 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 16:16:29,857 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 16:16:30,166 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 16:16:30,167 - indexing - INFO - Đang trích xuất đặc trưng từ files audio...
+2025-04-19 16:16:34,231 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 16:16:34,954 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 16:16:35,012 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 16:16:35,054 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 16:16:35,216 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 16:16:35,270 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 16:16:35,333 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 16:16:35,516 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 16:16:35,561 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 16:16:35,643 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 16:16:35,643 - indexing - INFO - Đang lưu 10 vectors vào Qdrant database...
+2025-04-19 16:16:35,690 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 16:16:35,692 - be_python.app.database.qdrant_manager - INFO - Collection audio_vectors đã tồn tại
+2025-04-19 16:16:35,751 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-04-19 16:16:35,754 - be_python.app.database.qdrant_manager - INFO - Đã chèn 10 vectors vào database
+2025-04-19 16:16:35,766 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 16:16:35,783 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi lấy thông tin collection: 'CollectionInfo' object has no attribute 'name'
+2025-04-19 16:16:35,783 - indexing - ERROR - Lỗi khi lấy thông tin collection: 'CollectionInfo' object has no attribute 'name'
+2025-04-19 16:16:35,783 - indexing - INFO - Hoàn thành quá trình indexing trong 5.93 giây
+2025-04-19 16:16:35,783 - indexing - INFO - Số vectors trong database: N/A
+2025-04-19 16:21:31,299 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 16:21:31,582 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 16:21:31,584 - indexing - INFO - Đang trích xuất đặc trưng từ files audio...
+2025-04-19 16:21:36,106 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 16:21:36,840 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 16:21:36,885 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 16:21:36,923 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 16:21:37,094 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 16:21:37,162 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 16:21:37,229 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 16:21:37,450 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 16:21:37,500 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 16:21:37,607 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 16:21:37,607 - indexing - INFO - Đang lưu 10 vectors vào Qdrant database...
+2025-04-19 16:21:37,647 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 16:21:37,650 - be_python.app.database.qdrant_manager - INFO - Collection audio_vectors đã tồn tại
+2025-04-19 16:21:37,746 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-04-19 16:21:37,748 - be_python.app.database.qdrant_manager - INFO - Đã chèn 10 vectors vào database
+2025-04-19 16:21:37,766 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 16:21:37,769 - indexing - INFO - Hoàn thành quá trình indexing trong 6.47 giây
+2025-04-19 16:21:37,769 - indexing - INFO - Số vectors trong database: 10
+2025-04-19 17:04:03,866 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 17:04:04,533 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 17:04:04,536 - indexing - INFO - Đang trích xuất đặc trưng từ files audio...
+2025-04-19 17:04:10,134 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 17:04:10,926 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 17:04:10,969 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 17:04:11,004 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 17:04:11,128 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 17:04:11,195 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 17:04:11,261 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 17:04:11,470 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 17:04:11,517 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 17:04:11,612 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 17:04:11,612 - indexing - INFO - Đang lưu 10 vectors vào Qdrant database...
+2025-04-19 17:04:11,640 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 17:04:12,079 - httpx - INFO - HTTP Request: DELETE http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:04:12,082 - be_python.app.database.qdrant_manager - INFO - Đã xóa collection cũ: audio_vectors
+2025-04-19 17:04:12,468 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:04:12,469 - be_python.app.database.qdrant_manager - INFO - Đã tạo collection mới audio_vectors với vector size 59
+2025-04-19 17:04:12,547 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-04-19 17:04:12,549 - be_python.app.database.qdrant_manager - INFO - Đã chèn 10 vectors vào database
+2025-04-19 17:04:12,579 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:04:12,582 - indexing - INFO - Hoàn thành quá trình indexing trong 8.72 giây
+2025-04-19 17:04:12,582 - indexing - INFO - Số vectors trong database: 10
+2025-04-19 17:35:49,897 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 17:35:50,173 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 17:35:50,175 - indexing - INFO - Đang trích xuất đặc trưng và metadata từ files audio...
+2025-04-19 17:35:55,002 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 17:35:55,743 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 17:35:55,781 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 17:35:55,809 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 17:35:55,928 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 17:35:55,990 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 17:35:56,045 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 17:35:56,226 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 17:35:56,275 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 17:35:56,357 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 17:35:56,358 - indexing - INFO - Đang xóa collection cũ và lưu 10 vectors vào Qdrant database...
+2025-04-19 17:35:56,394 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 17:35:56,589 - httpx - INFO - HTTP Request: DELETE http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:35:56,593 - be_python.app.database.qdrant_manager - INFO - Đã xóa collection cũ: audio_vectors
+2025-04-19 17:35:57,045 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:35:57,046 - be_python.app.database.qdrant_manager - INFO - Đã tạo collection mới audio_vectors với vector size 59
+2025-04-19 17:35:57,090 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 400 Bad Request"
+2025-04-19 17:35:57,090 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi lấy ID tiếp theo: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:35:57,090 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi chèn vectors: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:35:57,090 - indexing - ERROR - Lỗi khi indexing dataset: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:37:14,724 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 17:37:14,936 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 17:37:14,937 - indexing - INFO - Đang trích xuất đặc trưng và metadata từ files audio...
+2025-04-19 17:37:18,312 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 17:37:19,084 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 17:37:19,127 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 17:37:19,160 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 17:37:19,287 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 17:37:19,357 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 17:37:19,435 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 17:37:19,652 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 17:37:19,711 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 17:37:19,816 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 17:37:19,817 - indexing - INFO - Đang xóa collection cũ và lưu 10 vectors vào Qdrant database...
+2025-04-19 17:37:19,839 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 17:37:19,872 - httpx - INFO - HTTP Request: DELETE http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:37:19,875 - be_python.app.database.qdrant_manager - INFO - Đã xóa collection cũ: audio_vectors
+2025-04-19 17:37:20,292 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:37:20,293 - be_python.app.database.qdrant_manager - INFO - Đã tạo collection mới audio_vectors với vector size 59
+2025-04-19 17:37:20,316 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 400 Bad Request"
+2025-04-19 17:37:20,317 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi lấy ID tiếp theo: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:37:20,317 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi chèn vectors: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:37:20,318 - indexing - ERROR - Lỗi khi indexing dataset: Unexpected Response: 400 (Bad Request)
+Raw response content:
+b'{"status":{"error":"Wrong input: No range index for `order_by` key: `id`. Please create one to use `order_by`. Check https://qdrant.tech/documentation/concepts/indexing/#payload-index to see which  ...'
+2025-04-19 17:41:09,195 - indexing - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-04-19 17:41:09,560 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-19 17:41:09,562 - indexing - INFO - Đang trích xuất đặc trưng và metadata từ files audio...
+2025-04-19 17:41:14,602 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-04-19 17:41:15,319 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-04-19 17:41:15,376 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-04-19 17:41:15,430 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-04-19 17:41:15,707 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-04-19 17:41:15,797 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-04-19 17:41:15,886 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-04-19 17:41:16,112 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-04-19 17:41:16,179 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-04-19 17:41:16,268 - be_python.app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-04-19 17:41:16,268 - indexing - INFO - Đang xóa collection cũ và lưu 10 vectors vào Qdrant database...
+2025-04-19 17:41:16,301 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-04-19 17:41:16,407 - httpx - INFO - HTTP Request: DELETE http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:41:16,409 - be_python.app.database.qdrant_manager - INFO - Đã xóa collection cũ: audio_vectors
+2025-04-19 17:41:16,850 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:41:17,143 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/index?wait=true "HTTP/1.1 200 OK"
+2025-04-19 17:41:17,145 - be_python.app.database.qdrant_manager - INFO - Đã tạo collection mới audio_vectors với vector size 59 và range index cho id
+2025-04-19 17:41:17,178 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-04-19 17:41:17,237 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-04-19 17:41:17,237 - be_python.app.database.qdrant_manager - INFO - Đã chèn 10 vectors mới vào database
+2025-04-19 17:41:17,258 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-04-19 17:41:17,263 - indexing - INFO - Collection: audio_vectors
+2025-04-19 17:41:17,263 - indexing - INFO - Hoàn thành quá trình indexing trong 8.07 giây
+2025-04-19 17:41:17,263 - indexing - INFO - Số vectors trong database: 10
