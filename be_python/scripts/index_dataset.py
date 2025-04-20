@@ -6,8 +6,10 @@ import time
 from pathlib import Path
 
 # Đặt mã hóa stdout thành UTF-8 để tránh lỗi UnicodeEncodeError
-sys.stdout.reconfigure(encoding='utf-8')
-sys.stderr.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
 
 # Thêm thư mục gốc vào sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))

@@ -2,12 +2,47 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => {
-    const [file, setFile] = useState(null);
+    const [keyword, setKeyword] = useState("");
+
+    const sendSearchRequest = async (formData) => {
+        try {
+            const response = await fetch("http://localhost:8000/search", {
+                method: "POST",
+                body: formData,
+            });
+            if (!response.ok) {
+                console.error("Search request failed:", response.statusText);
+            } else {
+                const data = await response.json();
+                console.log("Search response:", data);
+                // Optionally handle response, e.g., navigate to /results or update state
+            }
+        } catch (error) {
+            console.error("Error sending search request:", error);
+        }
+    };
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
-            setFile(selectedFile);
+            const formData = new FormData();
+            formData.append("file", selectedFile);
+            sendSearchRequest(formData);
+        }
+    };
+
+    const handleKeywordChange = (event) => {
+        setKeyword(event.target.value);
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (keyword.trim() !== "") {
+                const formData = new FormData();
+                formData.append("keyword", keyword.trim());
+                sendSearchRequest(formData);
+            }
         }
     };
 
@@ -19,9 +54,9 @@ const SearchBar = () => {
                 className="resize-none overflow-hidden bg-transparent outline-none h-full flex-1"
                 placeholder="Tìm metadata"
                 rows="1"
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") e.preventDefault();
-                }}
+                value={keyword}
+                onChange={handleKeywordChange}
+                onKeyDown={handleKeyDown}
             />
 
             <input

@@ -117,3 +117,26 @@ def get_audio_filename(file_path: str) -> str:
         Tên file
     """
     return os.path.basename(file_path)
+
+
+def create_temp_file_url(file_path: str, base_url: str = None) -> str:
+    """
+    Tạo URL tạm thời cho file tạm đã lưu
+    Args:
+        file_path: Đường dẫn đến file tạm đã lưu
+        base_url: URL cơ sở của API, nếu None sẽ chỉ trả về đường dẫn tương đối
+    Returns:
+        URL tạm thời để truy cập file
+    """
+    # Lấy tên file từ đường dẫn đầy đủ
+    file_name = os.path.basename(file_path)
+
+    # Tạo URL tương đối
+    relative_url = f"/api/audio/stream/{file_name}"
+
+    # Nếu có base_url, trả về URL đầy đủ
+    if base_url:
+        return f"{base_url.rstrip('/')}{relative_url}"
+
+    # Ngược lại trả về URL tương đối
+    return relative_url

@@ -1,10 +1,25 @@
 import './App.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
 import LoginForm from "./components/LoginForm";
+import ResultsPage from './components/ResultPage';
+
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const onLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', onLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', onLocationChange);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-6">
@@ -15,7 +30,8 @@ function App() {
         alt="React logo" 
         className="w-auto h-[10%]" 
       />
-      <SearchBar />
+      {currentPath === "/" && <SearchBar />}
+      {currentPath === "/results" && <ResultsPage />}
     </div>
   )
 }

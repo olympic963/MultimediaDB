@@ -1,0 +1,26 @@
+2025-04-19 23:37:30,578 - app - INFO - Khoi dong ung dung Audio Search API
+2025-04-20 02:07:40,709 - app - INFO - Khoi dong ung dung Audio Search API
+2025-04-20 02:08:03,482 - app - INFO - Dong ung dung Audio Search API
+2025-04-20 18:08:16,823 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:08:16,844 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\ao5wog55.wav
+2025-04-20 18:08:34,213 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi tìm kiếm vectors tương tự: Unknown arguments: ['query_vector']
+2025-04-20 18:08:34,213 - be_python.app.api.router - ERROR - Lỗi khi xử lý tìm kiếm: Unknown arguments: ['query_vector']
+2025-04-20 18:13:01,074 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:13:01,088 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\q5g7st53.wav
+2025-04-20 18:13:09,718 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/search "HTTP/1.1 200 OK"
+2025-04-20 18:15:50,601 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:15:50,614 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\yotvws7r.wav
+2025-04-20 18:15:58,124 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi tìm kiếm vectors tương tự: Unknown arguments: ['query_vector']
+2025-04-20 18:15:58,125 - be_python.app.api.router - ERROR - Lỗi khi xử lý tìm kiếm: Unknown arguments: ['query_vector']
+2025-04-20 18:17:09,386 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:17:09,397 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\0fbxozwz.wav
+2025-04-20 18:17:19,067 - be_python.app.database.qdrant_manager - ERROR - Lỗi khi tìm kiếm vectors tương tự: Unknown arguments: ['query_vector']
+2025-04-20 18:17:19,067 - be_python.app.api.router - ERROR - Lỗi khi xử lý tìm kiếm: Unknown arguments: ['query_vector']
+2025-04-20 18:18:26,284 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:18:26,292 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\ilc_5877.wav
+2025-04-20 18:18:33,492 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/search "HTTP/1.1 200 OK"
+2025-04-20 18:23:47,144 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-04-20 18:23:47,154 - be_python.app.utils.audio_utils - INFO - Đã lưu file upload tạm thời: D:\Project\Multimedia Database\be_python\data\temp\bs7urdt2.wav
+2025-04-20 18:23:54,107 - be_python.app.api.router - INFO - Thời gian trích xuất đặc trưng: 6.9531 giây
+2025-04-20 18:23:54,194 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/search "HTTP/1.1 200 OK"
+2025-04-20 18:23:54,197 - be_python.app.api.router - INFO - Thời gian truy vấn Qdrant: 0.0895 giây
