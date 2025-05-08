@@ -5,7 +5,7 @@ import logging
 from typing import Tuple, List, Dict, Union
 import soundfile as sf
 
-from be_python.app.config import SAMPLE_RATE, N_MFCC, HOP_LENGTH, N_FFT
+from app.config import SAMPLE_RATE, N_MFCC, HOP_LENGTH, N_FFT
 
 logger = logging.getLogger(__name__)
 

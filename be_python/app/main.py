@@ -1,9 +1,8 @@
 import logging
 import os
 import sys
-from contextlib import asynccontextmanager
+import asyncio
 from pathlib import Path
-
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,11 +10,11 @@ from fastapi.responses import JSONResponse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from be_python.app.api.router import router
-from be_python.app.utils.audio_utils import clean_temp_files
-from be_python.app.config import TEMP_DIR
+from app.api.router import router
+from app.utils.audio_utils import clean_temp_files
+from app.config import TEMP_DIR, TEMP_FILE_TTL_MINUTES
 
-# Cấu hình logging với encoding utf-8
+# Cấu hình logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -25,6 +24,7 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger("app")
+logger.info("Đang khởi tạo file main.py")
 
 app = FastAPI(
     title="Audio Search API",
@@ -42,7 +42,6 @@ app.add_middleware(
 
 app.include_router(router, prefix="/api")
 
-
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     logger.error(f"Global exception: {str(exc)}")
@@ -50,7 +49,6 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": "Internal Server Error", "detail": str(exc)}
     )
-
 
 @app.get("/")
 async def root():
@@ -60,24 +58,49 @@ async def root():
         "docs": "/docs",
         "api_endpoints": {
             "search": "/api/search",
+            "reload": "/api/search/result/{query_id}",
             "stream": "/api/stream/{file_path}",
             "metadata": "/api/metadata/{file_path}",
-            "db_info": "/api/db-info"
         }
     }
 
+async def periodic_clean_temp_files():
+    while True:
+        try:
+            clean_temp_files()
+            await asyncio.sleep(TEMP_FILE_TTL_MINUTES*60)  # Giảm để kiểm tra
+        except Exception as e:
+            logger.error(f"Lỗi khi chạy tác vụ định kỳ xóa file tạm: {str(e)}")
+            await asyncio.sleep(10)
 
-@asynccontextmanager
-async def lifespan():
-    logger.info("Khoi dong ung dung Audio Search API")
-    os.makedirs(TEMP_DIR, exist_ok=True)
-    clean_temp_files()
-    yield
-    logger.info("Dong ung dung Audio Search API")
-    clean_temp_files(older_than_hours=0)
+# Biến toàn cục để lưu task
+background_task = None
 
+@app.on_event("startup")
+async def startup_event():
+    try:
+        os.makedirs(TEMP_DIR, exist_ok=True)
+        if not os.access(TEMP_DIR, os.W_OK):
+            logger.error(f"Không có quyền ghi vào {TEMP_DIR}")
+            raise RuntimeError(f"Không có quyền ghi vào {TEMP_DIR}")
+        logger.info(f"TEMP_DIR: {TEMP_DIR}")
+        clean_temp_files()
+        global background_task
+        background_task = asyncio.create_task(periodic_clean_temp_files())
+    except Exception as e:
+        logger.error(f"Lỗi trong startup: {str(e)}")
+        raise
 
-app.lifespan_context = lifespan
+@app.on_event("shutdown")
+async def shutdown_event():
+    try:
+        global background_task
+        if background_task:
+            background_task.cancel()
+        clean_temp_files()
+    except Exception as e:
+        logger.error(f"Lỗi trong shutdown: {str(e)}")
+        raise
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True, log_level="debug")

@@ -1,19 +1,24 @@
 import logging
 import os
 import time
-
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Request
+import uuid
+from cachetools import TTLCache
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Request, Query
 from fastapi.responses import StreamingResponse
 from starlette.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
 
-from be_python.app.api.models import SearchResponse, AudioSearchResult, ErrorResponse, RequestType
-from be_python.app.database.qdrant_manager import QdrantManager
-from be_python.app.feature_extractor import AudioFeatureExtractor
-from be_python.app.utils.audio_utils import save_upload_file, file_iterator, create_temp_file_url
+from app.api.models import SearchResponse, AudioSearchResult, ErrorResponse, RequestType
+from app.database.qdrant_manager import QdrantManager
+from app.feature_extractor import AudioFeatureExtractor
+from app.utils import audio_utils
+from app.utils.audio_utils import save_upload_file, file_iterator, create_temp_file_url
+from app.config import TEMP_DIR, AUDIO_DATASET_PATH, TEMP_FILE_TTL_MINUTES
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+# Khởi tạo cache với TTL khớp với TEMP_FILE_TTL_MINUTES (chuyển phút sang giây)
+cache = TTLCache(maxsize=1000, ttl=TEMP_FILE_TTL_MINUTES * 60)
 
 # Dependency để lấy các instances cần thiết
 def get_feature_extractor():
@@ -49,27 +54,27 @@ async def search_similar_audio(
                 detail=f"Định dạng file không hỗ trợ. Các định dạng hỗ trợ: {', '.join(valid_extensions)}"
             )
 
+        # Tạo query_id duy nhất
+        query_id = str(uuid.uuid4())
+
         # Lưu file upload vào thư mục tạm
         temp_file_path = await save_upload_file(file)
+        temp_file_name = os.path.basename(temp_file_path)
 
-        # Tạo URL tạm thời cho file truy vấn
-        base_url = str(request.base_url) if request else None
-        query_file_url = create_temp_file_url(temp_file_path, base_url)
-
-        # Đo thời gian trích xuất đặc trưng
+        # Trích xuất đặc trưng
         start_extraction_time = time.time()
         features = feature_extractor.extract_features(temp_file_path)
         query_vector = features["vector"]
         extraction_time = time.time() - start_extraction_time
         logger.info(f"Thời gian trích xuất đặc trưng: {extraction_time:.4f} giây")
 
-        # Đo thời gian truy vấn Qdrant
+        # Tìm kiếm trong Qdrant
         start_query_time = time.time()
         search_results = qdrant_manager.search_similar(query_vector)
         query_time = time.time() - start_query_time
         logger.info(f"Thời gian truy vấn Qdrant: {query_time:.4f} giây")
 
-        # Chuẩn bị kết quả trả về theo template SearchResponse
+        # Chuẩn bị kết quả
         results = [
             AudioSearchResult(
                 file_name=item["file_name"],
@@ -85,20 +90,66 @@ async def search_similar_audio(
             for item in search_results
         ]
 
-        # Trả về theo template SearchResponse với URL của file truy vấn và thời gian xử lý
-        return SearchResponse(
+        # Tạo response
+        response = SearchResponse(
+            query_id=query_id,
             request_type=RequestType.file,
-            query_file=file.filename,
             query_string="",
-            query_file_url=query_file_url,
-            results=results,
-            extraction_time=extraction_time,  # Thêm thời gian trích xuất đặc trưng
+            temp_file_name=temp_file_name,
+            results=results
         )
+
+        # Lưu response và file_name vào cache
+        cache[query_id] = response
+        logger.info(f"Lưu kết quả tìm kiếm vào cache với query_id: {query_id}")
+
+        return response
+
     except Exception as e:
         logger.error(f"Lỗi khi xử lý tìm kiếm: {str(e)}")
         raise HTTPException(
             status_code=HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Lỗi khi xử lý tìm kiếm: {str(e)}"
+        )
+
+@router.get(
+    "/search/result/{query_id}",
+    response_model=SearchResponse,
+    responses={
+        404: {"model": ErrorResponse},
+        500: {"model": ErrorResponse}
+    }
+)
+async def get_search_result(query_id: str):
+    """ Lấy kết quả tìm kiếm từ cache dựa trên query_id """
+    try:
+        # Kiểm tra cache
+        if query_id not in cache:
+            raise HTTPException(
+                status_code=HTTP_404_NOT_FOUND,
+                detail=f"Kết quả tìm kiếm cho query_id {query_id} không tồn tại hoặc đã hết hạn"
+            )
+
+        # Lấy response và file_name từ cache
+        response = cache[query_id]
+
+        # Kiểm tra file tạm có còn tồn tại không
+        if response.temp_file_name:
+            file_path = os.path.join(TEMP_DIR, response.temp_file_name)
+            if not os.path.exists(file_path):
+                logger.warning(f"File tạm {file_path} không còn tồn tại")
+                response.temp_file_name = None
+
+        logger.info(f"Trả về kết quả từ cache cho query_id: {query_id}")
+        return response
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Lỗi khi lấy kết quả từ cache: {str(e)}")
+        raise HTTPException(
+            status_code=HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Lỗi khi lấy kết quả: {str(e)}"
         )
 
 
@@ -140,10 +191,10 @@ async def get_audio_file_metadata(
         ]
         # Trả về theo template SearchResponse
         return SearchResponse(
+            query_id="",
             request_type=RequestType.metadata,
-            query_file=None,
             query_string=query_string,
-            query_file_url=None,  # Không có URL tạm thời
+            temp_file_name=None,
             results=results
         )
     except HTTPException:
@@ -165,22 +216,31 @@ async def get_audio_file_metadata(
 )
 async def stream_audio(
         file_name: str,
-        request: Request
+        type: str = Query(..., enum=["temp", "result"]),
 ):
-    """ Stream file audio từ thư mục tạm """
+    """ Stream file audio từ thư mục tạm hoặc dataset """
     try:
-        # Xây dựng đường dẫn đầy đủ đến file trong thư mục tạm
-        from be_python.app.config import TEMP_DIR
-        file_path = os.path.join(TEMP_DIR, file_name)
+        file_path = None
+        if type == "temp":
+            # Tìm file trong TEMP_DIR
+            file_path = os.path.join(TEMP_DIR, file_name)
+            logger.info(f"Kiểm tra file trong TEMP_DIR: {file_path}")
+        elif type == "result":
+            # Tìm file trong AUDIO_DATASET_PATH
+            for root, _, files in os.walk(AUDIO_DATASET_PATH):
+                if file_name in files:
+                    file_path = os.path.join(root, file_name)
+                    break
+            logger.info(f"Kiểm tra file trong AUDIO_DATASET_PATH: {file_path}")
 
         # Kiểm tra file tồn tại
-        if not os.path.exists(file_path):
+        if not file_path or not os.path.exists(file_path):
+            logger.error(f"File không tồn tại: {file_name} (type: {type})")
             raise HTTPException(
                 status_code=HTTP_404_NOT_FOUND,
                 detail=f"File không tồn tại: {file_name}"
             )
 
-        # Phần còn lại của hàm giữ nguyên
         # Lấy thông tin file
         file_size = os.path.getsize(file_path)
         # Xác định content_type dựa trên phần mở rộng
@@ -192,19 +252,32 @@ async def stream_audio(
             '.ogg': 'audio/ogg',
         }
         content_type = content_type_map.get(file_ext, 'application/octet-stream')
-        # Tạo iterator để streaming file
-        file_stream = file_iterator(file_path)
-        # Trả về response streaming
-        response = StreamingResponse(
-            file_stream,
-            media_type=content_type
-        )
-        # Thêm các headers cần thiết
-        response.headers["Content-Disposition"] = f"inline; filename={os.path.basename(file_path)}"
-        response.headers["Accept-Ranges"] = "bytes"
-        response.headers["Content-Length"] = str(file_size)
 
-        return response
+        # Thêm file vào active_streams
+        async with audio_utils.active_streams_lock:
+            audio_utils.active_streams.add(file_path)
+        logger.info(f"Đã thêm file vào active_streams: {file_path}")
+
+        try:
+            # Tạo iterator để streaming file
+            file_stream = file_iterator(file_path)
+            # Trả về response streaming
+            response = StreamingResponse(
+                file_stream,
+                media_type=content_type
+            )
+            # Thêm các headers cần thiết
+            response.headers["Content-Disposition"] = f"inline; filename={os.path.basename(file_path)}"
+            response.headers["Accept-Ranges"] = "bytes"
+            response.headers["Content-Length"] = str(file_size)
+
+            logger.info(f"Streaming file: {file_path}")
+            return response
+        finally:
+            # Xóa file khỏi active_streams sau khi stream hoàn tất hoặc lỗi
+            async with audio_utils.active_streams_lock:
+                audio_utils.active_streams.discard(file_path)
+            logger.info(f"Đã xóa file khỏi active_streams: {file_path}")
     except HTTPException:
         raise
     except Exception as e:

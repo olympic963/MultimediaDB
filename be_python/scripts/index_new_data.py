@@ -13,9 +13,9 @@ sys.stderr.reconfigure(encoding='utf-8')
 # Thêm thư mục gốc vào sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from be_python.app.feature_extractor import AudioFeatureExtractor
-from be_python.app.database.qdrant_manager import QdrantManager
-from be_python.app.config import AUDIO_DATASET_PATH
+from app.feature_extractor import AudioFeatureExtractor
+from app.database.qdrant_manager import QdrantManager
+from app.config import AUDIO_DATASET_PATH
 
 # Cấu hình logging với mã hóa UTF-8
 logging.basicConfig(

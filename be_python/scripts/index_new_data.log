@@ -1,0 +1,64 @@
+2025-05-04 17:54:37,217 - index_new_data - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-05-04 17:54:37,698 - index_new_data - INFO - Đang trích xuất đặc trưng và metadata từ files audio...
+2025-05-04 17:55:11,715 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-05-04 17:55:12,676 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-05-04 17:55:12,879 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-05-04 17:55:12,952 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-05-04 17:55:13,229 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-05-04 17:55:13,453 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-05-04 17:55:13,571 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-05-04 17:55:13,939 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-05-04 17:55:14,082 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-05-04 17:55:14,222 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-05-04 17:55:14,223 - index_new_data - INFO - Đang kiểm tra và chèn 10 vectors mới vào Qdrant database...
+2025-05-04 17:55:14,555 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-05-04 17:55:16,210 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-05-04 17:55:16,860 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/index?wait=true "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,299 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/index?wait=true "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,300 - app.database.qdrant_manager - INFO - Đã tạo collection mới audio_vectors với vector size 59, range index cho id và keyword index cho file_name
+2025-05-04 17:55:17,398 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,457 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,516 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,573 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,638 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,692 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,800 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,849 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,861 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,886 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 17:55:17,887 - app.database.qdrant_manager - ERROR - Lỗi khi lấy ID tiếp theo: module 'qdrant_client.http.models.models' has no attribute 'OrderBy'
+2025-05-04 17:55:17,887 - app.database.qdrant_manager - ERROR - Lỗi khi chèn vectors: module 'qdrant_client.http.models.models' has no attribute 'OrderBy'
+2025-05-04 17:55:17,888 - index_new_data - ERROR - Lỗi khi chèn dữ liệu mới: module 'qdrant_client.http.models.models' has no attribute 'OrderBy'
+2025-05-04 18:05:09,986 - index_new_data - INFO - Bắt đầu quá trình trích xuất đặc trưng từ D:\Project\Multimedia Database\Dataset\Bassoon
+2025-05-04 18:05:10,458 - httpx - INFO - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-05-04 18:05:10,461 - index_new_data - INFO - Đang trích xuất đặc trưng và metadata từ files audio...
+2025-05-04 18:05:17,331 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\157886__setuniman__funny-bassoon-0p_17bs4.wav
+2025-05-04 18:05:18,185 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\164065__evaalloza__pinumberbassoon.wav
+2025-05-04 18:05:18,230 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\255174__elettroedo__bassoon_2.wav
+2025-05-04 18:05:18,264 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\256986__mauress__a7q2-harmonic.wav
+2025-05-04 18:05:18,407 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\360354__visual__anthoclar-120-111.wav
+2025-05-04 18:05:18,490 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372674__sgossner__bassoon-sustain-g4-psbassoon_g3_v1_1.wav
+2025-05-04 18:05:18,552 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\372692__sgossner__bassoon-vibrato-sustain-c4-psbassoon_c3_v1_1.wav
+2025-05-04 18:05:18,757 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\384069__sig_ex__bassoon-solo-loop_test_dry.mp3
+2025-05-04 18:05:18,805 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\520716__arnaub__bassoon-bisbigliando-high-g.wav
+2025-05-04 18:05:18,919 - app.feature_extractor - INFO - Đã trích xuất đặc trưng từ: D:\Project\Multimedia Database\Dataset\Bassoon\760067__mastersoundboy2005__high-pitched-bassoon-music-sample-2-trilled.wav
+2025-05-04 18:05:18,919 - index_new_data - INFO - Đang kiểm tra và chèn 10 vectors mới vào Qdrant database...
+2025-05-04 18:05:18,958 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-05-04 18:05:18,963 - app.database.qdrant_manager - INFO - Collection audio_vectors đã tồn tại, tiếp tục sử dụng
+2025-05-04 18:05:19,052 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,083 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,129 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,278 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,334 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,370 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,416 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,426 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,438 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,448 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,496 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/audio_vectors/points/scroll "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,630 - httpx - INFO - HTTP Request: PUT http://localhost:6333/collections/audio_vectors/points?wait=true "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,632 - app.database.qdrant_manager - INFO - Đã chèn 10 vectors mới vào database
+2025-05-04 18:05:19,644 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/audio_vectors "HTTP/1.1 200 OK"
+2025-05-04 18:05:19,655 - index_new_data - INFO - Collection: audio_vectors
+2025-05-04 18:05:19,655 - index_new_data - INFO - Hoàn thành quá trình chèn dữ liệu mới trong 9.67 giây
+2025-05-04 18:05:19,655 - index_new_data - INFO - Số vectors trong database: 10

@@ -31,3 +31,6 @@ TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Kích thước chunk cho việc streaming (bytes)
 CHUNK_SIZE = 1024 * 8  # 8KB
+
+# Thời gian sống của file tạm (phút)
+TEMP_FILE_TTL_MINUTES = float(os.getenv("TEMP_FILE_TTL_MINUTES", 1.0))

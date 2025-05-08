@@ -20,10 +20,10 @@ class AudioSearchResult(BaseModel):
 
 class SearchResponse(BaseModel):
     """Model cho response API tìm kiếm"""
+    query_id: str = Field(..., description="ID duy nhất của yêu cầu tìm kiếm")
     request_type: RequestType = Field(..., description="Loại yêu cầu: metadata hoặc file")
-    query_file: str = Field(..., description="Tên file query")
     query_string: str = Field(..., description="Chuỗi query")
-    query_file_url: Optional[str] = Field(None, description="URL tạm thời của file truy vấn")
+    temp_file_name: Optional[str] = Field(None, description="Tên file tạm của file truy vấn")
     results: List[AudioSearchResult] = Field(..., description="Danh sách kết quả tìm kiếm")
 
 class DatabaseInfo(BaseModel):

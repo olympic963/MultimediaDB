@@ -6,7 +6,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from qdrant_client.http.exceptions import UnexpectedResponse
 
-from be_python.app.config import QDRANT_HOST, QDRANT_PORT, QDRANT_COLLECTION_NAME, TOP_K
+from app.config import QDRANT_HOST, QDRANT_PORT, QDRANT_COLLECTION_NAME, TOP_K
 
 logger = logging.getLogger(__name__)
 

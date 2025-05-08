@@ -40,3 +40,6 @@
 .read-the-docs {
   color: #888;
 } */
+body {
+  @apply bg-gradient-to-b from-gray-100 to-gray-100 min-h-screen;
+}

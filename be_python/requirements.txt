@@ -5,7 +5,7 @@ python-dotenv==1.0.0
 librosa==0.10.1
 numpy==1.24.3
 pandas==2.0.3
-qdrant-client==1.6.0
+qdrant-client
 pydantic==2.4.2
 scipy==1.11.3
 matplotlib==3.7.3

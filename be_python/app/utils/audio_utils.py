@@ -1,17 +1,20 @@
-import os
+import asyncio
 import logging
+import os
 import tempfile
-from pathlib import Path
-from typing import BinaryIO, Generator, Optional
+import time
+from typing import Generator
 
 import soundfile as sf
-import numpy as np
 from fastapi import UploadFile
 
-from be_python.app.config import TEMP_DIR, SAMPLE_RATE, CHUNK_SIZE
+from app.config import TEMP_DIR, CHUNK_SIZE,TEMP_FILE_TTL_MINUTES
 
 logger = logging.getLogger(__name__)
-
+# Tập hợp để theo dõi các file đang được stream
+active_streams = set()
+# Khóa để đảm bảo tính đồng bộ khi truy cập active_streams
+active_streams_lock = asyncio.Lock()
 
 async def save_upload_file(upload_file: UploadFile) -> str:
     """
@@ -84,27 +87,32 @@ def get_audio_metadata(file_path: str) -> dict:
             "error": str(e)
         }
 
-
-def clean_temp_files(older_than_hours: int = 1):
+def clean_temp_files(older_than_minutes: float = TEMP_FILE_TTL_MINUTES, max_retries: int = 3, retry_delay: float = 1.0):
     """
     Xóa các file tạm thời cũ hơn một khoảng thời gian nhất định
-
     Args:
-        older_than_hours: Số giờ, file cũ hơn số giờ này sẽ bị xóa
+        older_than_minutes: Số phút, file cũ hơn sẽ bị xóa
+        max_retries: Số lần thử lại nếu xóa thất bại
+        retry_delay: Thời gian chờ giữa các lần thử (giây)
     """
-    import time
     current_time = time.time()
-
     for file in TEMP_DIR.glob("*"):
         if file.is_file():
             file_age = current_time - file.stat().st_mtime
-            if file_age > older_than_hours * 3600:  # Convert hours to seconds
-                try:
-                    os.remove(file)
-                    logger.info(f"Đã xóa file tạm thời: {file}")
-                except Exception as e:
-                    logger.error(f"Không thể xóa file tạm thời {file}: {str(e)}")
-
+            file_path = str(file)
+            # Chỉ xóa nếu file không đang được stream và đủ tuổi
+            if file_age > older_than_minutes * 60 and file_path not in active_streams:
+                for attempt in range(max_retries):
+                    try:
+                        os.remove(file)
+                        logger.info(f"Đã xóa file tạm thời: {file}")
+                        break
+                    except OSError as e:
+                        if attempt < max_retries - 1:
+                            logger.warning(f"Thử lại xóa file {file} (lần {attempt + 1}): {str(e)}")
+                            time.sleep(retry_delay)
+                        else:
+                            logger.error(f"Không thể xóa file tạm thời {file} sau {max_retries} lần thử: {str(e)}")
 
 def get_audio_filename(file_path: str) -> str:
     """
@@ -132,7 +140,7 @@ def create_temp_file_url(file_path: str, base_url: str = None) -> str:
     file_name = os.path.basename(file_path)
 
     # Tạo URL tương đối
-    relative_url = f"/api/audio/stream/{file_name}"
+    relative_url = f"/api/stream/{file_name}"
 
     # Nếu có base_url, trả về URL đầy đủ
     if base_url:
